@@ -3,18 +3,15 @@
  * @param {number} target
  * @return {number[]}
  */
-
-// target - index = comPair
-// target - index2 = co
 var twoSum = function(nums, target) {
     const map = {}
     
-    for(let i = 0; i <nums.length; i++) {
+    for(let i = 0; i < nums.length; i++) {
         const comPair = target - nums[i]
-        if(map[comPair] !== undefined) {
-            return [i, map[comPair]]
+        if(map[comPair] === undefined) {
+            map[nums[i]] = i 
         } else {
-            map[nums[i]] = i
+            return [i, map[comPair]]
         }
     }
 };
