@@ -9,13 +9,13 @@ var isValid = function(s) {
         switch(char) {
             case '(': stack.push(')');
                 break;
-            case '[': stack.push(']');
-                break;
             case '{': stack.push('}');
                 break;
-            default:
-                if (char !== stack.pop()) {
-                    return false;
+            case '[': stack.push(']');
+                break;
+            default :
+                if(char !== stack.pop()) {
+                    return false
                 }
         }
     }
