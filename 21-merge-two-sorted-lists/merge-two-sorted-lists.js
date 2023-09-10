@@ -11,16 +11,11 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function(list1, list2) {
-    // create a new linkedlist
-    // while both linkeds are not empty
-    // compare and add smaller to new linked
-    // add either l1 or l2 to the tail
-
     const tempNode = new ListNode(0, null)
     let currentNode = tempNode
 
     while(list1 && list2) {
-        if (list1.val <= list2.val) {
+        if(list1.val <= list2.val) {
             currentNode.next = list1
             list1 = list1.next
         } else {
