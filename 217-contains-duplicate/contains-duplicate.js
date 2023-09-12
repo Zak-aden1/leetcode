@@ -5,9 +5,9 @@
 var containsDuplicate = function(nums) {
     const map = {}
 
-    for (let i = 0; i < nums.length; i ++) {
-        if(map[nums[i]] === undefined) {
-            map[nums[i]] = true
+    for(let item of nums) {
+        if(map[item] === undefined) {
+            map[item] = 1
         } else {
             return true
         }
