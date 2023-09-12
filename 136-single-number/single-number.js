@@ -9,7 +9,6 @@ var singleNumber = function(nums) {
         map[nums[i]] = map[nums[i]] + 1 || 1
     }
 
-    console.log(map)
     for(let num in map) {
         if (map[num] !== 2) return num
     }
