@@ -11,17 +11,19 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    let arr = [root, "stop"]
-    let counter = 0
+    if(root === null) return null
+    const arr = [root, "stop"]
+    let counter = 1
 
     while(arr.length > 1) {
         const node = arr.shift()
 
         if(node === "stop") {
-            counter = counter + 1;
+            counter++
             arr.push(node)
         } else {
-            if(node !== null) arr.push(node.left, node.right)
+            if(node.left !== null) arr.push(node.left)
+            if(node.right !== null) arr.push(node.right)
         }
     }
 
