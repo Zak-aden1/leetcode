@@ -11,16 +11,18 @@
  * @return {TreeNode}
  */
 var invertTree = function(root) {
-  // Base case...
-    if(root == null){
-        return root
-    }
-      invertTree(root.left)
-      invertTree(root.right)
+    if(root === null) return null
+    const arr = [root]
+    while(arr.length) {
+        const node = arr.pop();
 
-      let tmp = root.left
-      root.left = root.right
-      root.right = tmp
+        let tmp = node.left
+        node.left = node.right
+        node.right = tmp
+
+        if(node.left !== null) arr.push(node.left)
+        if(node.right !== null) arr.push(node.right)
+    }
 
     return root
 };
