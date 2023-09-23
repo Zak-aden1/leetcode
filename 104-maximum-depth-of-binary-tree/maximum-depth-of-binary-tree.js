@@ -19,7 +19,7 @@ var maxDepth = function(root) {
         const node = arr.shift()
 
         if(node === "stop") {
-            counter++
+            counter = counter + 1
             arr.push(node)
         } else {
             if(node.left !== null) arr.push(node.left)
