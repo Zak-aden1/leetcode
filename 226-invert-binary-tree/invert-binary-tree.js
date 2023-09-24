@@ -12,17 +12,12 @@
  */
 var invertTree = function(root) {
     if(root === null) return null
-    const arr = [root]
-    while(arr.length) {
-        const node = arr.pop();
 
-        let tmp = node.left
-        node.left = node.right
-        node.right = tmp
-
-        if(node.left !== null) arr.push(node.left)
-        if(node.right !== null) arr.push(node.right)
-    }
+    invertTree(root.left)
+    invertTree(root.right)
+    let tmp = root.right
+    root.right = root.left
+    root.left = tmp
 
     return root
 };
