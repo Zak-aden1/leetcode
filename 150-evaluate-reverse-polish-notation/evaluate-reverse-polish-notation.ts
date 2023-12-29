@@ -19,5 +19,5 @@ function evalRPN(tokens: string[]): number {
         }
     }
 
-    return stack[0]
+    return stack.pop()
 };
