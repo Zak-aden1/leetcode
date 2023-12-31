@@ -1,18 +1,19 @@
 class MinStack {
-    private min;
     private head
+    // look at hint if needed
     constructor() {
         this.head = undefined
     }
 
     push(val: number): void {
         if(!this.head) {
-            this.head = { value: val, min: val}
-            return 
+            this.head = {value: val, min: val}
+            return
         }
-        const newMin = this.head.min < val ? this.head.min : val
-        const node = {value: val, next: this.head, min: newMin}
 
+        const newMin = val < this.head.min ? val : this.head.min
+
+        const node = {value: val, next: this.head, min: newMin}
         this.head = node
     }
 
@@ -20,20 +21,19 @@ class MinStack {
         if(!this.head) return undefined
 
         const head = this.head
-        this.head = this.head.next
+        this.head = this.head?.next
+
+        // free
+        // head.next = undefined
         return head.value
     }
 
     top(): number {
-        if(!this.head) return undefined
-
-        return this.head.value
+        return this.head?.value
     }
 
     getMin(): number {
-        if(!this.head) return undefined
-
-        return this.head.min
+        return this.head?.min
     }
 }
 
