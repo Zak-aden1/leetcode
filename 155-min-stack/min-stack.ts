@@ -24,7 +24,7 @@ class MinStack {
         this.head = this.head?.next
 
         // free
-        // head.next = undefined
+        head.next = undefined
         return head.value
     }
 
