@@ -11,11 +11,14 @@
  * @return {boolean}
  */
 var isValidBST = function(root, min = null, max = null) {
-    if(min !== null && root.val <= min) return false
+    if(root === null) return true
     if(max !== null && root.val >= max) return false
+    if(min !== null && root.val <= min) return false
 
-    if(root.left && !isValidBST(root.left, min, root.val)) return false
-    if(root.right && !isValidBST(root.right, root.val, max)) return false
+    let left = isValidBST(root.left, min, root.val)
+    let right = isValidBST(root.right, root.val, max)
 
+    if(left === false || right === false) return false
     return true
+
 };
