@@ -6,16 +6,15 @@ function combinationSum(candidates: number[], target: number): number[][] {
             res.push([...curr])
             return
         }
-        if(i >= candidates.length || total > target) {
-            return
-        }
+        if (i > candidates.length -1 || total > target) return
 
+        // recurse with same number
         curr.push(candidates[i])
         dfs(i, curr, total + candidates[i])
+        // recurse with next number
         curr.pop()
         dfs(i + 1, curr, total)
     }
-
     dfs(0, [], 0)
 
     return res
