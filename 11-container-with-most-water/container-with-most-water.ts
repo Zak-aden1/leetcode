@@ -1,17 +1,18 @@
 function maxArea(height: number[]): number {
     let left = 0
     let right = height.length - 1
-    let sum = 0
+    let max = 0
 
     while(left < right) {
-        let area = (right - left) * Math.min(height[left], height[right])
-        sum = Math.max(sum, area)
-        if(height[left] < height[right]) {
-            left++
-        } else {
+        let sum = (right - left) * Math.min(height[left], height[right])
+        max = Math.max(sum, max)
+
+        if(height[left] > height[right]) {
             right--
+        } else {
+            left++
         }
     }
 
-    return sum
+    return max
 };
