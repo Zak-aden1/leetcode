@@ -7,33 +7,27 @@ class MinStack {
 
     push(val: number): void {
         if(!this.head) {
-            this.head = {value: val, min: val}
+            this.head = {val, min: val}
             return
         }
 
-        const newMin = val < this.head.min ? val : this.head.min
+        const min = Math.min(val, this.head.min)
 
-        const node = {value: val, next: this.head, min: newMin}
-        this.head = node
+        this.head = {val, min, next: this.head}
     }
 
     pop(): void {
-        if(!this.head) return undefined
+        if(!this.head) return
 
-        const head = this.head
-        this.head = this.head?.next
-
-        // free
-        head.next = undefined
-        return head.value
+        this.head = this.head.next
     }
 
     top(): number {
-        return this.head?.value
+        return this.head.val
     }
 
     getMin(): number {
-        return this.head?.min
+        return this.head.min
     }
 }
 
