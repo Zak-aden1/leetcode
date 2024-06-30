@@ -3,12 +3,10 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    const map = {}
+    nums = nums.sort((a, b) => a - b)
 
-    for(let item of nums) {
-        if(map[item] === undefined) {
-            map[item] = 1
-        } else {
+    for(let i = 0; i < nums.length; i++) {
+        if(nums[i] === nums[i+1]) {
             return true
         }
     }
