@@ -11,43 +11,38 @@
  */
 
 function splitListToParts(head: ListNode | null, k: number): Array<ListNode | null> {
-    // initial array with k size fill with null
     let ans = new Array(k).fill(null)
 
-    // find the size of the listNode
     let size = 0
     let curr = head
-
-    while(curr) {
+    while (curr) {
         size++
         curr = curr.next
     }
 
-    // find split length and remainder (if theres any)
     let splitLength = Math.floor(size / k)
-    let remainder = size % k
+    let r = size % k
 
     curr = head
     let prev = curr
-    // loop through k
     for (let i = 0; i < k; i++) {
-        let newPart = curr
+        let part = curr
 
-        let currSize = splitLength
-        if(remainder > 0) {
-            currSize++
-            remainder--
+        let currSplitLength = splitLength
+        if (r > 0) {
+            r--
+            currSplitLength++
         }
-        for (let j = 0; j < currSize; j++) {
+
+        for(let j = 0; j < currSplitLength; j++) {
             prev = curr
-            if (curr !== null) {
+            if(curr) {
                 curr = curr.next
             }
         }
-        if (prev !== null) {
-            prev.next = null
-        }
-        ans[i] = newPart
+        // prev?.next = null
+        if(prev) prev.next = null
+        ans[i] = part
     }
 
     return ans
