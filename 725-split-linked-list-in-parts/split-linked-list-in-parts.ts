@@ -28,10 +28,10 @@ function splitListToParts(head: ListNode | null, k: number): Array<ListNode | nu
     let remainder = size % k
 
     curr = head
+    let prev = curr
     // loop through k
     for (let i = 0; i < k; i++) {
-        let dummyHead = new ListNode(0)
-        let tail = dummyHead
+        let newPart = curr
 
         let currSize = splitLength
         if(remainder > 0) {
@@ -39,11 +39,15 @@ function splitListToParts(head: ListNode | null, k: number): Array<ListNode | nu
             remainder--
         }
         for (let j = 0; j < currSize; j++) {
-            tail.next = new ListNode(curr.val)
-            tail = tail.next
-            curr = curr.next
+            prev = curr
+            if (curr !== null) {
+                curr = curr.next
+            }
         }
-        ans[i] = dummyHead.next
+        if (prev !== null) {
+            prev.next = null
+        }
+        ans[i] = newPart
     }
 
     return ans
