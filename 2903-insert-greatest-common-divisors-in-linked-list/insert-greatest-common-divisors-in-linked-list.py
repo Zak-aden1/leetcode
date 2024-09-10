@@ -5,27 +5,20 @@
 #         self.next = next
 class Solution:
     def insertGreatestCommonDivisors(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head or not head.next:
+        if head is None or head.next is None:
             return head
+        
         prev = head
         curr = head.next
 
         while curr:
-            n = math.gcd(prev.val, curr.val)
-            prev.next = ListNode(n)
-            prev.next.next = curr
-            
-            prev = prev.next.next
+            num = math.gcd(prev.val, curr.val)
+
+            node = ListNode(num)
+            prev.next = node
+            node.next = curr
+
+            prev = curr
             curr = curr.next
         
         return head
-
-        
-
-    
-
-    def hcd(self, a, b):
-        if b == 0:
-            return a
-        else:
-            return self.hcd(b, a % b)
