@@ -12,7 +12,7 @@ class Solution:
         curr = head.next
 
         while curr:
-            num = math.gcd(prev.val, curr.val)
+            num = self.gcd(prev.val, curr.val)
 
             node = ListNode(num)
             prev.next = node
@@ -22,3 +22,9 @@ class Solution:
             curr = curr.next
         
         return head
+    
+    def gcd(self, a, b):
+        if b == 0:
+            return a
+        else:
+            return gcd(b, a % b)
