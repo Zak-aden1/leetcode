@@ -5,6 +5,12 @@
 #         self.next = next
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        # loop through lists
+        # add both numbers
+        # add number
+        # carry the remainder for next loop
+        # carry it on
+        # if caryy != 0, add carry to end of list
         dummy = ListNode(0)
         tail = dummy
 
@@ -22,8 +28,9 @@ class Solution:
             r = total // 10
             tail.next = ListNode(num)
             tail = tail.next
-            carry = r
 
+            carry = r
+        
         if carry > 0:
             tail.next = ListNode(carry)
         
