@@ -4,24 +4,21 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-    const mapS = toMap(s)
-    const mapT = toMap(t)
+    const strA = toMap(s)
+    const strB = toMap(t)
 
-    console.log(mapS, mapT)
+    if(Object.keys(strA).length !== Object.keys(strB).length) return false
 
-    if(Object.keys(mapS).length !== Object.keys(mapT).length) return false
-
-    for(let char in mapS) {
-        if(mapS[char] !== mapT[char])return false
+    for (let char in strA) {
+        if(strA[char] !== strB[char]) return false
     }
 
     return true
 };
 
-const toMap = (string) => {
-    const map = {}
-
-    for(let char of string) {
+function toMap (str) {
+    let map = {}
+    for (let char of str) {
         map[char] = map[char] + 1 || 1
     }
 
