@@ -4,13 +4,19 @@ class Solution(object):
         :type x: int
         :rtype: int
         """
-        idx = 0
+        l, r = 0, x
+        res = 0
 
-        while idx <= x:
-            if idx * idx == x:
-                return idx
-            if idx * idx > x:
-                return idx - 1
-            idx+= 1
+        while l <= r:
+            m = l + ((r - l) // 2)
+            
+            if m**2 > x:
+                r = m - 1
+            elif m**2 < x:
+                l = m + 1
+                res = m
+            else:
+                return m
         
-        return idx
+
+        return res
