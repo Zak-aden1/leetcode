@@ -1,27 +1,23 @@
-class Solution(object):
-    def search(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: int
-        """
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
         l, r = 0, len(nums) - 1
         
-        while l<= r:
-            m = l + ((r - l) // 2)
+        while l <= r:
+            m = l +((r - l) // 2)
             
             if nums[m] == target:
                 return m
-            # in left sub array
+            
+            # if in left sub tree
             if nums[l] <= nums[m]:
-                if target < nums[l] or target > nums[m]:
+                if nums[l] > target or target > nums[m]:
                     l = m + 1
                 else:
                     r = m - 1
             else:
                 if target > nums[r] or target < nums[m]:
-                    r = m -1
+                    r = m - 1
                 else:
                     l = m + 1
         
-        return - 1
+        return -1
