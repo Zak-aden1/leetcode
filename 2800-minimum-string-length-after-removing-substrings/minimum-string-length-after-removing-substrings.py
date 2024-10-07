@@ -8,8 +8,7 @@ class Solution:
             if not stack:
                 stack.append(char)
                 continue
-            
-            print(stack[-1] + char)
+
             if (stack[-1] + char) in m:
                 stack.pop()
             else:
