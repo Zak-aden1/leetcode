@@ -3,24 +3,20 @@
  * @return {number}
  */
 var minAddToMakeValid = function(s) {
-    const stack = [s[0]]
+    const stack = []
 
-    let open_bracket = 0
-    let min_adds_required = 0
+    let counter = 0
     for (let char of s) {
-        if (char === "(") {
-            open_bracket +=1
+        if (char == "(") {
+            stack.push("(")
         } else {
-            if (open_bracket > 0) {
-                open_bracket--
+            if (stack.length > 0) {
+                stack.pop()
             } else {
-                min_adds_required++
+                counter++
             }
         }
     }
-
-    return open_bracket + min_adds_required
-
-    return counter
     
+    return stack.length + counter
 };
