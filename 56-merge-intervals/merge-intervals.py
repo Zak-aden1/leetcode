@@ -1,26 +1,17 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        if not intervals:
-            return []
+        intervals.sort(key = lambda x: x[0])
 
         res = []
-        intervals.sort()
-        prev = intervals.pop(0)
 
-        while len(intervals) > 0:
-            second = intervals.pop(0)
-            if prev[1] < second[0]:
-                res.append(prev)
-                prev = second
+        for i in range(1, len(intervals)):
+            if intervals[i - 1][1] < intervals[i][0]:
+                res.append(intervals[i - 1])
             else:
-                prev = self.mSort(prev, second)
+                intervals[i] = [
+                    min(intervals[i - 1][0], intervals[i][0]),
+                    max(intervals[i - 1][1], intervals[i][1])
+                ]
         
-        res.append(prev)
+        res.append(intervals[len(intervals) - 1])
         return res
-
-    
-    def mSort(self, arrA, arrB):
-        return [
-            min(arrA[0], arrB[0]),
-            max(arrA[1], arrB[1]),
-        ]
