@@ -1,17 +1,17 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         col = Counter(nums)
-        max_heap = []
+        min_heap = []
 
         for key, v in col.items():
-            heapq.heappush(max_heap, (v, key))
-            if len(max_heap) > k:
-                heapq.heappop(max_heap)
+            heapq.heappush(min_heap, (v, key))
+            if len(min_heap) > k:
+                heapq.heappop(min_heap)
         
         res = []
 
-        while max_heap:
-            res.append(heapq.heappop(max_heap)[1])
+        while min_heap:
+            res.append(heapq.heappop(min_heap)[1])
 
         return res[::-1] 
         
