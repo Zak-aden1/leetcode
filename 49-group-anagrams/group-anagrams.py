@@ -2,17 +2,19 @@ class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         hash_map = {}
 
-        for char in strs:
-            sort = ''.join(sorted(char))
-            print(char, sort)
+        for s in strs:
+            key = [0] * 26
 
-            if sort in hash_map:
-                hash_map[sort].append(char)
+            for c in s:
+                v = ord(c) - ord("a")
+                key[v] += 1
+            
+            if tuple(key) not in hash_map:
+                hash_map[tuple(key)] = [s]
             else:
-                hash_map[sort] = [char]
-        
+                hash_map[tuple(key)].append(s)
+  
         res = []
-        print(hash_map)
 
         for k  in hash_map:
             res.append(hash_map[k])
