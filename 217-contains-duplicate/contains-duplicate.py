@@ -1,11 +1,9 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        map = {}
+        map = Counter(nums)
 
-        for num in nums:
-            if num in map:
+        for k, v in map.items():
+            if v > 1:
                 return True
-            else:
-                map[num] = 1
         
         return False
