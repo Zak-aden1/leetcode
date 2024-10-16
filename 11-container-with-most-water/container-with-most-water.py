@@ -1,17 +1,20 @@
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        res = 0
+        # two pointer solution
+        # calc area = min(l, r) **2
+        # move smaller pointer
 
-        l, r = 0, len(height) - 1
+        area = 0
 
-        while l < r:
-            calc = min(height[l], height[r]) * abs(l - r)
+        l, r = 0, len(height) -1 
 
-            res = max(res, calc)
+        while l<= r:
+            curr_area = min(height[l], height[r]) * (r - l)
+            area = max(area, curr_area)
 
-            if height[l] < height[r]:
-                l+= 1
-            else:
+            if height[l] > height[r]:
                 r -= 1
-        
-        return res
+            else:
+                l+= 1
+
+        return area
