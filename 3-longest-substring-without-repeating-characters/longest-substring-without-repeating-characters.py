@@ -1,16 +1,17 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        map = set()
-
+        seen = set()
         l, r = 0, 0
-        score = 0
+        ans = 0
+
         while r < len(s):
-            if s[r] not in map:
-                map.add(s[r])
-                r += 1
-                score = max(score, r-l)
+            if s[r] in seen:
+                # pop
+                seen.remove(s[l])
+                l+= 1
             else:
-                map.remove(s[l])
-                l+=1
+                seen.add(s[r])
+                r += 1
+                ans = max(ans, r - l)
         
-        return score
+        return ans
