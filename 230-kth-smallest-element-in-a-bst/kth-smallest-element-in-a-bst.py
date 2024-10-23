@@ -13,6 +13,8 @@ class Solution:
                 return 
             
             dfs(root.left)
+            if len(arr) == k:
+                return
             arr.append(root.val)
             dfs(root.right)
         
