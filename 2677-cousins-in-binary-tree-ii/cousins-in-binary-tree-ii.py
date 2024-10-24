@@ -7,42 +7,42 @@
 class Solution:
     def replaceValueInTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         levelsum = []
+
         q = deque([root])
 
         while q:
             length = len(q)
-            s = 0
-            for i in range(length):
+            level = 0
+            for _ in range(length):
                 node = q.popleft()
-                s += node.val
+                level += node.val
+
                 if node.left:
                     q.append(node.left)
                 if node.right:
                     q.append(node.right)
-            levelsum.append(s)
+            levelsum.append(level)
         
-        q = collections.deque()
         q.append(root)
+        ans = []
         root.val = 0
-        index = 1
+        idx = 1
 
         while q:
             length = len(q)
+            level = 0
             for _ in range(length):
                 node = q.popleft()
 
                 sibling_sum = (
                     node.left.val if node.left else 0
                 ) + (node.right.val if node.right else 0)
-
                 if node.left:
-                    node.left.val = levelsum[index] - sibling_sum
+                    node.left.val = levelsum[idx] - sibling_sum
                     q.append(node.left)
                 if node.right:
-                    node.right.val = levelsum[index] - sibling_sum
                     q.append(node.right)
-            index +=1
+                    node.right.val = levelsum[idx] - sibling_sum
+            idx += 1
         
         return root
-
-
