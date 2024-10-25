@@ -2,15 +2,18 @@ class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         arr = []
 
-        def bt(i, lists):
+        def backtrack(arr, comb, i):
             if i == len(nums):
-                arr.append(lists.copy())
+                arr.append(comb[:])
                 return
-            
-            lists.append(nums[i])
-            bt(i+ 1, lists)
-            lists.pop()
-            bt(i + 1, lists)
-        bt(0, [])
+            if len(comb) == len(nums):
+                arr.append(comb[:])
+                return
+
+            comb.append(nums[i])
+            backtrack(arr, comb, i + 1)
+            comb.pop()
+            backtrack(arr, comb, i + 1)
+        backtrack(arr, [], 0)
 
         return arr
