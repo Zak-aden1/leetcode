@@ -1,16 +1,25 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        l = 0
+        # sliding window maybe
+        # max = maxf - length <= k
+        # use 26 arr for chars using ascii
+        # loop through string
+        # add to arr
+        # check if maxf - length of window <= k
+        # if so add orther wide move left pointer
 
-        output = 0
-        counts = [0] * 26
+        count = [0] * 26
+
+        l = 0
+        maxV = 0
 
         for r in range(len(s)):
-            counts[ord(s[r]) - ord("A")] += 1
-            if r - l + 1 <= max(counts) + k:
-                output = max(output, r - l + 1)
+            count[ord(s[r]) - ord("A")] += 1
+
+            if (r - l + 1) - max(count) <=  k:
+                maxV = max(r - l + 1, maxV)
             else:
-                counts[ord(s[l]) - ord("A")] -= 1
-                l += 1
+                count[ord(s[l]) - ord("A")] -= 1
+                l +=1
         
-        return output
+        return maxV
