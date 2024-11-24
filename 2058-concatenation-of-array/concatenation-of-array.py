@@ -1,11 +1,10 @@
 class Solution:
     def getConcatenation(self, nums: List[int]) -> List[int]:
-        length = len(nums)
-        double = length * 2
-        arr = [0] * double
+        n = len(nums)
+        arr = [0] * (n * 2)
 
-        for i in range(length):
+        for i in range(n):
             arr[i] = nums[i]
-            arr[i + length] = nums[i]
+            arr[i + n] = nums[i]
         
         return arr
