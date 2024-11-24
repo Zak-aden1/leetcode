@@ -1,16 +1,21 @@
 function maxArea(height: number[]): number {
-    let left = 0
-    let right = height.length - 1
+    // area = min(l, r) * (r - l)
+    // use a two pointer
+    // if r > l, move left = r, r++
+    // check if r 
+
+    let l = 0
+    let r = height.length - 1
     let max = 0
 
-    while(left < right) {
-        let sum = (right - left) * Math.min(height[left], height[right])
+    while (l <= r) {
+        let sum = Math.min(height[l], height[r]) * (r - l)
         max = Math.max(sum, max)
 
-        if(height[left] > height[right]) {
-            right--
+        if(height[r] > height[l]) {
+            l++
         } else {
-            left++
+            r--
         }
     }
 
