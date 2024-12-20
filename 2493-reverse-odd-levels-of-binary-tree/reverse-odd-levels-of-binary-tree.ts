@@ -13,21 +13,39 @@
  */
 
 function reverseOddLevels(root: TreeNode | null): TreeNode | null {
-    
-    const dfs = (leftChild, rightChild, level) => {
-        if (!leftChild || !rightChild) return
+    let q = [root]
+    let level = 0
 
-        if (level % 2 === 0) {
-            let temp = leftChild.val
-            leftChild.val = rightChild.val
-            rightChild.val = temp
+
+    while (q.length > 0) {
+        let length = q.length
+        let next_level = []
+
+        for (let i = 0; i < length; i++) {
+            let node = q.shift()
+            next_level.push(node)
+            if(node.left) {
+                q.push(node.left)
+            }
+            if(node.right) {
+                q.push(node.right)
+            }
         }
 
-        dfs(leftChild.left, rightChild.right, level + 1)
-        dfs(leftChild.right, rightChild.left, level + 1)
+        if (level % 2 === 1) {
+            // switch
+            let left = 0
+            let right = next_level.length - 1
+            while (left < right) {
+                let temp = next_level[left].val
+                next_level[left].val = next_level[right].val
+                next_level[right].val = temp
+                left++
+                right--
+            }
+        }
+        level+=1
     }
-
-    dfs(root.left, root.right, 0)
 
     return root
 };
